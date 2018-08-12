@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>sample</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<ion-list>
+  <ion-item *ngFor="let item of items | async" (click)="navigate(item)">
+    <ion-icon [name]="item.icon" slot="start"></ion-icon>
+    {{item.title}}
+    <div class="item-note" slot="end">
+      {{item.note}}
+    </div>
+  </ion-item>
+</ion-list>
+
+<ion-list [formGroup]="fg">
+    <ion-item>
+      <ion-input required type="text" placeholder="Title" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input required type="text" placeholder="Note" formControlName="note"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input required type="text" placeholder="Icon" formControlName="icon"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" color="primary" fill="outline" (click)="addItem()">Save</ion-button>
+  <ion-button expand="block" color="primary" fill="outline" (click)="removeItem()">Remove</ion-button>
+
+</ion-content>
