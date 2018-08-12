@@ -56,14 +56,19 @@ export class SamplePage implements OnInit {
     }
     this.fg.reset();
   }
-  removeItem() {
-    const id = this.fg.value.id;
+  removeItem(item) {
+    const id = item ? item.id : this.fg.value.id;
+    console.log(item);
     this.db.collection('/items')
     .ref.doc(id).delete().then(__ => {
       this.toastController.create({duration: 2000, message: 'Record updated'}).then(toast => {
         toast.present();
         });
     });
+  }
+  duplicate(item) {
+    delete item.id;
+    this.fg.patchValue(item);
   }
   navigate(item) {
     this.fg.setValue(item);
